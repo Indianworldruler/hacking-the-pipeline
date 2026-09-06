@@ -35,3 +35,11 @@ jobs:
 
       - name: Debug info
         run: echo "APP_DEBUG_TOKEN=$APP_DEBUG_TOKEN"
+
+      - name: Deployment gate check
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          echo "## Deployment gate" >> "$GITHUB_STEP_SUMMARY"
+          echo "This change just reached main with no second approval." >> "$GITHUB_STEP_SUMMARY"
+          echo "Flag: HAXN{s3lf_m3rg3d_t0_m41n_n0_s3c0nd_3y3s}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Flag: HAXN{s3lf_m3rg3d_t0_m41n_n0_s3c0nd_3y3s}"
