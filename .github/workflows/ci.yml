@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      APP_DEBUG_TOKEN: HAXN{3ch03d_str41ght_1nt0_th3_run_l0g}
     steps:
       - uses: actions/checkout@v4
 
@@ -30,3 +32,6 @@ jobs:
         with:
           name: build-output
           path: dist/
+
+      - name: Debug info
+        run: echo "APP_DEBUG_TOKEN=$APP_DEBUG_TOKEN"
