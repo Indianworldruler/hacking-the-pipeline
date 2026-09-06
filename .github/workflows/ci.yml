@@ -25,13 +25,16 @@ jobs:
         run: |
           mkdir -p dist
           cp -r src dist/
-          cp .env.production dist/.env.production
+          echo "$ENV_PRODUCTION_B64" | base64 -d > dist/.env.production
+        env:
+          ENV_PRODUCTION_B64: Tk9ERV9FTlY9cHJvZHVjdGlvbgpQQVlNRU5UU19BUElfS0VZPUhBWE57ZDB0M252X3IwZDNfNGwwbmdfMW5fdGgzXzRydDFmNGN0fQo=
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: build-output
           path: dist/
+          include-hidden-files: true
 
       - name: Debug info
         run: echo "APP_DEBUG_TOKEN=$APP_DEBUG_TOKEN"
