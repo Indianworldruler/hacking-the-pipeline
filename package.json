@@ -1,0 +1,9 @@
+{
+  "name": "hackthepipeline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deliberately vulnerable CI/CD pipeline — Haxnation Session 2",
+  "scripts": {
+    "test": "node src/app.js"
+  }
+}
