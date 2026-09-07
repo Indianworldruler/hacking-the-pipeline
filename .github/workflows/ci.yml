@@ -33,18 +33,3 @@ jobs:
           name: build-output
           path: dist/
           include-hidden-files: true
-
-  deployment-gate:
-    if: >-
-      github.event_name == 'pull_request' &&
-      github.event.action == 'closed' &&
-      github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deployment gate check
-        run: |
-          echo "## Deployment gate" >> "$GITHUB_STEP_SUMMARY"
-          echo "This change just reached main with no second approval." >> "$GITHUB_STEP_SUMMARY"
-          echo "Flag: HAXN{s3lf_m3rg3d_t0_m41n_n0_s3c0nd_3y3s}" >> "$GITHUB_STEP_SUMMARY"
-          echo "Flag: HAXN{s3lf_m3rg3d_t0_m41n_n0_s3c0nd_3y3s}"
