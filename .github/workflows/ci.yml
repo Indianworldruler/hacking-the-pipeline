@@ -11,7 +11,7 @@ jobs:
   build:
     if: github.event_name != 'pull_request' || github.event.action != 'closed'
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v4
 
@@ -26,9 +26,6 @@ jobs:
         run: |
           mkdir -p dist
           cp -r src dist/
-          echo "$ENV_PRODUCTION_B64" | base64 -d > dist/.env.production
-        env:
-          ENV_PRODUCTION_B64: Tk9ERV9FTlY9cHJvZHVjdGlvbgpQQVlNRU5UU19BUElfS0VZPUhBWE57ZDB0M252X3IwZDNfNGwwbmdfMW5fdGgzXzRydDFmNGN0fQo=
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -37,14 +34,13 @@ jobs:
           path: dist/
           include-hidden-files: true
 
-
-
   deployment-gate:
     if: >-
       github.event_name == 'pull_request' &&
       github.event.action == 'closed' &&
       github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+
     steps:
       - name: Deployment gate check
         run: |
