@@ -11,8 +11,7 @@ jobs:
   build:
     if: github.event_name != 'pull_request' || github.event.action != 'closed'
     runs-on: ubuntu-latest
-    env:
-      APP_DEBUG_TOKEN: HAXN{3ch03d_str41ght_1nt0_th3_run_l0g}
+    
     steps:
       - uses: actions/checkout@v4
 
@@ -38,8 +37,7 @@ jobs:
           path: dist/
           include-hidden-files: true
 
-      - name: Debug info
-        run: echo "APP_DEBUG_TOKEN=$APP_DEBUG_TOKEN"
+
 
   deployment-gate:
     if: >-
